@@ -1,0 +1,22 @@
+# Changes here will be overwritten by Copier; DO NOT MODIFY THIS FILE DIRECTLY!
+#
+# This file was generated using copier (https://copier.readthedocs.io/) with the
+# template copier-UvScaffolding (https://github.com/gt-sse-center/copier-UvScaffolding).
+# Additional information (including instructions on how to use this template with copier) is
+# available at https://github.com/gt-sse-center/copier-UvScaffolding.
+#
+
+_commit: v0.5.0
+_src_path: E:\GitHub\gt-sse-center\copier-UvScaffolding
+author_email: github@DavidBrownell.com
+author_name: David Brownell
+coverage_badge_gist_id: ''
+github_host: https://github.com
+github_repo_name: dbrownell_BrythonWebviewTest
+github_username: davidbrownell
+install_ty: true
+license: MIT
+project_name: dbrownell_BrythonWebviewTest
+python_package_name: dbrownell_BrythonWebviewTest
+python_versions: '3.14'
+sign_artifacts_question: false
