@@ -18,5 +18,5 @@ install_ty: true
 license: MIT
 project_name: dbrownell_BrythonWebviewTest
 python_package_name: dbrownell_BrythonWebviewTest
-python_versions: '3.14'
+python_versions: '3.13'
 sign_artifacts_question: false
