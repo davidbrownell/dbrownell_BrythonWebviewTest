@@ -16,7 +16,9 @@ def test_NoArgs(monkeypatch: MonkeyPatch) -> None:
     assert webview is not None
 
     assert threading["kwargs"]["host"] == "127.0.0.1"
-    assert webview[1] == f"http://{threading['kwargs']['host']}:{threading['kwargs']['port']}"
+    assert (
+        webview[1] == f"http://{threading['kwargs']['host']}:{threading['kwargs']['port']}/static/main.html"
+    )
 
 
 # ----------------------------------------------------------------------
@@ -27,7 +29,9 @@ def test_Port(monkeypatch: MonkeyPatch) -> None:
     assert webview is not None
 
     assert threading["kwargs"]["port"] == 12345
-    assert webview[1] == f"http://{threading['kwargs']['host']}:{threading['kwargs']['port']}"
+    assert (
+        webview[1] == f"http://{threading['kwargs']['host']}:{threading['kwargs']['port']}/static/main.html"
+    )
 
 
 # ----------------------------------------------------------------------

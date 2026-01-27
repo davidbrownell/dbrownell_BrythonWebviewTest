@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="brython.js"></script>
+    <script type="text/javascript" src="brython_stdlib.js"></script>
+
+    <title>Hello</title>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+
+    <label for="operation">Operation:</label>
+    <select id="operation">
+      <option value="add">Add</option>
+      <option value="sub">Sub</option>
+      <option value="mult">Mult</option>
+      <option value="div">Divide</option>
+    </select>
+    <br><br>
+
+    <label for="num1">Number 1:</label>
+    <input type="number" id="num1" step="any" required>
+    <br><br>
+
+    <label for="num2">Number 2:</label>
+    <input type="number" id="num2" step="any" required>
+    <br><br>
+
+    <button type="button" id="submitBtn">Submit</button>
+    <br><br>
+
+    <div id="result"></div>
+
+    <script type="text/python" src="../main.py"></script>
+  </body>
+</html>
