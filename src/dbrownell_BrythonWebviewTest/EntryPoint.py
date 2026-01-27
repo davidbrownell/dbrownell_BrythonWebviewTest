@@ -73,10 +73,10 @@ def EntryPoint(
 
         webview.create_window(
             "Brython Webview Test",
-            f"http://127.0.0.1:{port}",
+            f"http://127.0.0.1:{port}/static/main.html",
         )
 
-        webview.start()
+        webview.start(debug=debug)
 
 
 # ----------------------------------------------------------------------

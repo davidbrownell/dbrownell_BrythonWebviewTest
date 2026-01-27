@@ -37,8 +37,8 @@ app.mount(
 )
 
 
-@app.get("/")
-def main(request: Request) -> object:
+@app.get("/main.py")
+def main_py(request: Request) -> object:
     if app.state.token is None:
         raise HTTPException(
             status_code=status.HTTP_501_NOT_IMPLEMENTED,
@@ -46,7 +46,7 @@ def main(request: Request) -> object:
         )
 
     return templates.TemplateResponse(
-        "main.html",
+        "main.py",
         {
             "request": request,
             "token": app.state.token,
