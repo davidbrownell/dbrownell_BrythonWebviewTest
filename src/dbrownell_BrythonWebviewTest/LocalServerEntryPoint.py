@@ -1,18 +1,13 @@
-import random
-import socket
-import threading
-import uuid
-
 from typing import Annotated
 
 import typer
 import uvicorn
-import webview
 
 from dbrownell_Common.Streams.DoneManager import DoneManager, Flags as DoneManagerFlags
 from typer.core import TyperGroup
 
-from dbrownell_BrythonWebviewTest.Server import app as server
+from dbrownell_BrythonWebviewTest.Impl import EntryPointUtils
+from dbrownell_BrythonWebviewTest.web.Server import app as server
 
 
 # ----------------------------------------------------------------------
@@ -52,47 +47,23 @@ def EntryPoint(
         typer.Option("--debug", help="Write debug information to the terminal."),
     ] = False,
 ) -> None:
-    """Run the app."""
+    """Run the local server."""
 
-    port = port or _GetUnusedPort()
-    token = token or str(uuid.uuid4()).replace("-", "")
+    port = EntryPointUtils.ResolvePort(port)
+    token = EntryPointUtils.ResolveToken(token)
 
     with DoneManager.CreateCommandLine(
         flags=DoneManagerFlags.Create(verbose=verbose, debug=debug),
     ):
         server.state.token = token
 
-        t = threading.Thread(
-            target=uvicorn.run,
-            args=(server,),
-            daemon=True,
-            kwargs={"host": "127.0.0.1", "port": port},
+        uvicorn.run(
+            server,
+            host="127.0.0.1",
+            port=port,
+            reload=False,
+            log_level="info",
         )
-
-        t.start()
-
-        webview.create_window(
-            "Brython Webview Test",
-            f"http://127.0.0.1:{port}/static/main.html",
-        )
-
-        webview.start(debug=debug)
-
-
-# ----------------------------------------------------------------------
-# ----------------------------------------------------------------------
-# ----------------------------------------------------------------------
-def _GetUnusedPort() -> int:
-    while True:
-        port = random.randint(1024, 65535)  # noqa: S311
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-        try:
-            sock.bind(("127.0.0.1", port))
-            sock.close()
-            return port
-        except OSError:
-            pass
 
 
 # ----------------------------------------------------------------------
