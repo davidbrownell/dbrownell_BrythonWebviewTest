@@ -17,9 +17,15 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from dbrownell_BrythonWebviewTest.LocalServerEntryPoint import app
 from dbrownell_BrythonWebviewTest.Impl.EntryPointUtils import GetUnusedPort
 
 import TestImpl
+
+
+# ----------------------------------------------------------------------
+def test_Version() -> None:
+    TestImpl.TestVersion(app)
 
 
 # ----------------------------------------------------------------------

@@ -53,6 +53,15 @@ def EntryPoint(
         int | None,
         typer.Option("--debug-port", min=1024, max=65535, help="The debug port used with the server."),
     ] = None,
+    version: Annotated[  # noqa: ARG001
+        bool | None,
+        typer.Option(
+            "--version",
+            callback=EntryPointUtils.VersionCallback,
+            is_eager=True,
+            help="Display the version number and exit.",
+        ),
+    ] = None,
 ) -> None:
     """Run the app."""
 

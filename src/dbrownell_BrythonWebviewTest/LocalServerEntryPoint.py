@@ -46,6 +46,15 @@ def EntryPoint(
         bool,
         typer.Option("--debug", help="Write debug information to the terminal."),
     ] = False,
+    version: Annotated[  # noqa: ARG001
+        bool | None,
+        typer.Option(
+            "--version",
+            callback=EntryPointUtils.VersionCallback,
+            is_eager=True,
+            help="Display the version number and exit.",
+        ),
+    ] = None,
 ) -> None:
     """Run the local server."""
 
