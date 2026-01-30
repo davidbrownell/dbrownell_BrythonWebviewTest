@@ -42,6 +42,13 @@ runs:
         name: Python package
         path: dist
 
+    - name: Download Executables
+      uses: actions/download-artifact@v4
+      with:
+        pattern: executable-*
+        path: dist
+        merge-multiple: true
+
     # Create repository tag
     - name: Create Repository Tag
       shell: bash

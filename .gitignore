@@ -1,9 +1,10 @@
-
+__pycache__
 .claude
 .coverage
 .DS_Store
 .vscode
-__pycache__
 coverage.xml
+build
+dist
 minisign_key.pri
 post_generation_instructions.html
