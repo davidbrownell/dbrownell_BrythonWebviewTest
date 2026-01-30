@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Annotated
 
@@ -9,13 +10,22 @@ from fastapi.templating import Jinja2Templates
 
 
 # ----------------------------------------------------------------------
+if getattr(sys, "frozen", False):
+    # When running as a PyInstaller-bundled executable, bundled data files (templates, static assets)
+    # are extracted to a temporary directory whose path is stored in sys._MEIPASS. The standard
+    # __file__-based resolution doesn't work because the source .py files no longer exist on disk
+    # in their original locations.
+    _BASE_DIR = Path(sys._MEIPASS) / "dbrownell_BrythonWebviewTest" / "web"  # noqa: SLF001  # ty: ignore[unresolved-attribute]
+else:
+    _BASE_DIR = Path(__file__).parent
+
 app = FastAPI()
 
 # This value should be set externally
 app.state.token: str | None = None
 
 security = HTTPBearer()
-templates = Jinja2Templates(directory=Path(__file__).parent)
+templates = Jinja2Templates(directory=_BASE_DIR)
 
 
 # ----------------------------------------------------------------------
@@ -36,7 +46,7 @@ def _ValidateToken(
 
 
 # ----------------------------------------------------------------------
-app.mount("/static", StaticFiles(directory=Path(__file__).parent / "static", html=True))
+app.mount("/static", StaticFiles(directory=_BASE_DIR / "static", html=True))
 
 
 # ----------------------------------------------------------------------
