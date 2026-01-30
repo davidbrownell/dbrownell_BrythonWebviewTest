@@ -39,6 +39,11 @@ _skip_headless = pytest.mark.skipif(
 
 
 # ----------------------------------------------------------------------
+def test_Version() -> None:
+    TestImpl.TestVersion(app)
+
+
+# ----------------------------------------------------------------------
 def test_NoArgs(monkeypatch: MonkeyPatch) -> None:
     result, threading, webview = _Execute(monkeypatch, [])
 

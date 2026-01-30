@@ -1,9 +1,23 @@
+import typer
+from typer.testing import CliRunner
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from dbrownell_BrythonWebviewTest import __version__
+
+
+# ----------------------------------------------------------------------
+def TestVersion(app: typer.Typer) -> None:
+    runner = CliRunner()
+    result = runner.invoke(app, ["--version"])
+
+    assert result.exit_code == 0
+    assert result.output.strip() == __version__
 
 
 # ----------------------------------------------------------------------

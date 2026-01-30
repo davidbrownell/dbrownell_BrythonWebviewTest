@@ -1,6 +1,11 @@
 import random
 import secrets
 import socket
+import sys
+
+import typer
+
+from dbrownell_BrythonWebviewTest import __version__
 
 
 # ----------------------------------------------------------------------
@@ -25,3 +30,10 @@ def ResolvePort(port: int | None) -> int:
 # ----------------------------------------------------------------------
 def ResolveToken(token: str | None) -> str:
     return token or secrets.token_urlsafe(32)
+
+
+# ----------------------------------------------------------------------
+def VersionCallback(value: bool) -> None:  # noqa: FBT001
+    if value:
+        sys.stdout.write(__version__ + "\n")
+        raise typer.Exit()
