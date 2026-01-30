@@ -311,6 +311,7 @@ name = "dbrownell-brythonwebviewtest"
 version = "0.0.0"
 source = { editable = "." }
 dependencies = [
+    { name = "dbrownell-common" },
     { name = "fastapi", extra = ["standard"] },
     { name = "jinja2" },
     { name = "pywebview", extra = ["ssl"] },
@@ -334,6 +335,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "dbrownell-common", specifier = ">=0.16.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.128.0" },
     { name = "jinja2", specifier = ">=3.1.6" },
     { name = "pywebview", extras = ["ssl"], specifier = ">=6.1" },
