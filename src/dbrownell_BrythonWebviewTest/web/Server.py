@@ -65,9 +65,9 @@ def index_py(request: Request) -> object:
         )
 
     return templates.TemplateResponse(
+        request,
         "index.jinja2.py",
         {
-            "request": request,
             "token": app.state.token,
         },
     )
