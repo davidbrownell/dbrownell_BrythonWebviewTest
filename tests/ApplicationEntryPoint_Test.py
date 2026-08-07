@@ -16,10 +16,7 @@ from click.testing import Result
 from dbrownell_Common import SubprocessEx
 from _pytest.monkeypatch import MonkeyPatch
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from typer.testing import CliRunner
 
@@ -173,7 +170,7 @@ def _driver() -> Generator[WebDriver, None, None]:
                 driver = webdriver.Chrome(options=options)
 
             try:
-                WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "submitBtn")))
+                TestImpl.WaitForBrython(driver)
 
                 yield driver
 

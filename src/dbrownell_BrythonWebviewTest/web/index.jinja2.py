@@ -35,3 +35,9 @@ async def OnButtonClick(_: DOMEvent) -> None:
 
 
 document["submitBtn"].bind("click", lambda event: run(OnButtonClick(event)))
+
+# Signal that Brython has finished loading and the click handler is bound. Tests (and any other
+# automation) must wait for this attribute before interacting with the page; the button exists in
+# the static HTML long before Brython finishes executing this script, so its presence alone is not
+# a reliable indication of readiness.
+document["submitBtn"].attrs["data-ready"] = "true"

@@ -12,10 +12,7 @@ from pathlib import Path
 import pytest
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from dbrownell_BrythonWebviewTest.LocalServerEntryPoint import app
 from dbrownell_BrythonWebviewTest.Impl.EntryPointUtils import GetUnusedPort
@@ -123,7 +120,7 @@ def _driver() -> Generator[WebDriver, None, None]:
 
                 driver.get(f"http://127.0.0.1:{port}/")
 
-                WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "submitBtn")))
+                TestImpl.WaitForBrython(driver)
 
                 yield driver
 
